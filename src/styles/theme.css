@@ -1,0 +1,252 @@
+/* ==========================================================================
+   NovaBank Design System
+   Dark premium banking theme — HDFC trust, Stripe polish, Linear precision.
+   Every color, radius, and shadow used across the app is defined here.
+   ========================================================================== */
+
+:root {
+  /* ---- Core palette (locked spec) ---- */
+  --color-bg: #0b1020;
+  --color-bg-elevated: #0f1526;
+  --color-surface: #111827;
+  --color-surface-hover: #141c2e;
+  --color-border: #1f2937;
+  --color-border-strong: #2a3548;
+
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-soft: rgba(37, 99, 235, 0.12);
+
+  --color-accent: #06b6d4;
+  --color-accent-soft: rgba(6, 182, 212, 0.12);
+
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-text-faint: #64748b;
+
+  --color-success: #10b981;
+  --color-success-soft: rgba(16, 185, 129, 0.12);
+  --color-danger: #ef4444;
+  --color-danger-soft: rgba(239, 68, 68, 0.12);
+  --color-warning: #f59e0b;
+  --color-warning-soft: rgba(245, 158, 11, 0.12);
+
+  /* ---- Gradients (used sparingly — never on more than one element per screen) ---- */
+  --gradient-brand: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+
+  /* ---- Typography ---- */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: 2.25rem;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- Radius ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* ---- Shadows (subtle, premium — no glow-heavy game UI) ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.36), 0 2px 6px rgba(0, 0, 0, 0.24);
+  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.35);
+  /* Layered card depth — inset highlight + ambient drop. Palette unchanged. */
+  --shadow-card:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.35) inset,
+    0 10px 24px rgba(0, 0, 0, 0.32),
+    0 2px 4px rgba(0, 0, 0, 0.22);
+  --shadow-card-hover:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.28) inset,
+    0 18px 44px rgba(0, 0, 0, 0.42),
+    0 6px 16px rgba(37, 99, 235, 0.10);
+  --shadow-raised:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 20px 48px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.28);
+
+  /* ---- Glass ---- */
+  --glass-bg: rgba(17, 24, 39, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: 16px;
+  --glass-bg-strong: rgba(15, 21, 38, 0.82);
+  --glass-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0) 42%);
+
+  /* ---- Motion (kept minimal, no gaming-style animation) ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+
+  /* ---- Layout ---- */
+  --sidebar-width: 280px;
+  --topbar-height: 68px;
+  --content-max-width: 1180px;
+  --z-shell: 1;
+  --z-sidebar: 30;
+  --z-topbar: 40;
+  --z-dropdown: 50;
+  --z-drawer: 90;
+}
+
+/* ==========================================================================
+   Reset & base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(1200px 600px at 90% -10%, rgba(37, 99, 235, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(6, 182, 212, 0.06), transparent 55%);
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-text);
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* Scrollbar — quiet, not thin-and-invisible, not chunky */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ==========================================================================
+   Typography utility classes
+   ========================================================================== */
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+.text-faint {
+  color: var(--color-text-faint);
+}
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   Shared layout containers
+   ========================================================================== */
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+}
+
+#root {
+  min-height: 100%;
+  height: 100%;
+}
+
+/* While the dashboard shell is mounted it is position:fixed. Lock the
+   document so iOS/overscroll cannot scroll html/body behind it. */
+html.dashboard-locked,
+html.dashboard-locked body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+.content-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Glass panel used lightly — auth cards, popovers, not everywhere */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}

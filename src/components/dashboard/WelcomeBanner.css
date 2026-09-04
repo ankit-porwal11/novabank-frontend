@@ -1,0 +1,54 @@
+.welcome-banner {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-4), 3vw, var(--space-8));
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(500px 260px at 100% 0%, rgba(6, 182, 212, 0.16), transparent 60%),
+    radial-gradient(500px 260px at 0% 100%, rgba(37, 99, 235, 0.16), transparent 60%),
+    var(--glass-highlight),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-6);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.welcome-banner__visual {
+  flex: 0 0 auto;
+  width: clamp(88px, 16vw, 148px);
+  height: clamp(88px, 16vw, 148px);
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-banner__copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-banner__eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.welcome-banner__headline {
+  font-size: clamp(1.25rem, 3.2vw, var(--fs-2xl));
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.welcome-banner__meta {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}

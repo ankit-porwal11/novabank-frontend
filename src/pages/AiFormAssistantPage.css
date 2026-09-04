@@ -1,0 +1,13 @@
+.ai-assistant-page {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex: 1;
+}
+
+.ai-assistant-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}

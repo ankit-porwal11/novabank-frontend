@@ -1,0 +1,317 @@
+.profile-header {
+  margin-bottom: var(--space-8);
+}
+
+/* ==========================================================================
+   Cover
+   ========================================================================== */
+
+.profile-header__cover {
+  position: relative;
+  height: 220px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(500px 260px at 100% 0%, rgba(6, 182, 212, 0.18), transparent 60%),
+    radial-gradient(500px 260px at 0% 100%, rgba(37, 99, 235, 0.18), transparent 60%),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.profile-header__cover-clicktarget {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.profile-header__cover-img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  transition: filter var(--duration-base) var(--ease-out);
+}
+
+/* Hover brightness increase — only the image, overlay/gradient below
+   still keeps text/controls readable regardless of hover state. */
+.profile-header__cover-clicktarget:hover .profile-header__cover-img {
+  filter: brightness(1.12);
+}
+
+.profile-header__cover-zoom-hint {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  background: rgba(11, 16, 32, 0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.profile-header__cover-clicktarget:hover .profile-header__cover-zoom-hint {
+  opacity: 1;
+}
+
+/* Subtle breathing ambient glow — adds depth without being flashy; sits
+   above the base cover background, below the readability overlay. */
+.profile-header__cover-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(360px 200px at 85% 15%, rgba(6, 182, 212, 0.16), transparent 65%),
+    radial-gradient(320px 200px at 10% 90%, rgba(37, 99, 235, 0.14), transparent 65%);
+}
+
+/* Stronger gradient for contrast/depth — readable controls at every
+   scroll position, and a believable sense of depth behind the avatar. */
+.profile-header__cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 16, 32, 0) 30%,
+    rgba(11, 16, 32, 0.35) 70%,
+    rgba(11, 16, 32, 0.82) 100%
+  );
+  pointer-events: none;
+}
+
+.profile-header__cover-edit-slot {
+  position: absolute;
+  bottom: var(--space-3);
+  right: var(--space-3);
+  z-index: 2;
+}
+
+.profile-header__cover-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(11, 16, 32, 0.75);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  transition: background var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.profile-header__cover-edit:hover:not(:disabled) {
+  background: rgba(17, 24, 39, 0.9);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+.profile-header__cover-edit:disabled {
+  opacity: 0.7;
+}
+
+.profile-header__hidden-input {
+  display: none;
+}
+
+/* ==========================================================================
+   Identity block — centered, overlapping the cover, LinkedIn/Revolut-style
+   ========================================================================== */
+
+.profile-header__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 var(--space-6);
+  margin-top: -75px;
+}
+
+.profile-header__avatar-float {
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.32));
+}
+
+.profile-header__avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+}
+
+.profile-header__avatar-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.55), rgba(6, 182, 212, 0.35) 70%, transparent 100%);
+  filter: blur(20px);
+  z-index: 0;
+}
+
+.profile-header__avatar-glow--idle {
+  filter: blur(24px);
+}
+
+/* Soft light sweep across the glass ring — a slow-rotating conic gradient
+   masked to a thin arc, kept extremely subtle (low opacity) so it reads
+   as ambient shimmer, not a spinner. */
+.profile-header__avatar-ring-sweep {
+  position: absolute;
+  inset: -6px;
+  border-radius: var(--radius-full);
+  z-index: 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(248, 250, 252, 0.35) 12deg,
+    transparent 26deg,
+    transparent 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  pointer-events: none;
+}
+
+/* Glass ring — a soft translucent border sitting between the glow and the
+   avatar image itself, giving the "glass" depth called for in the brief. */
+.profile-header__avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(248, 250, 252, 0.18);
+  background: rgba(248, 250, 252, 0.04);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+.profile-header__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: var(--radius-full);
+  border: 4px solid var(--color-bg);
+  object-fit: cover;
+  background: var(--color-surface);
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--shadow-lg);
+}
+
+.profile-header__avatar--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-brand);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+}
+
+.profile-header__avatar-zoom-hint {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(11, 16, 32, 0.35);
+  border-radius: var(--radius-full);
+  margin: 4px;
+  pointer-events: none;
+}
+
+.profile-header__avatar-edit-slot {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  z-index: 4;
+}
+
+.profile-header__avatar-edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  border: 3px solid var(--color-bg);
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.profile-header__avatar-edit:hover {
+  background: var(--color-primary-hover);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.22);
+  transform: scale(1.06);
+}
+
+.profile-header__meta {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-header__name {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.profile-header__username {
+  font-size: var(--fs-sm);
+}
+
+.profile-header__verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: var(--space-2);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-success-soft);
+  color: var(--color-success);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .profile-header__cover {
+    height: 170px;
+  }
+  .profile-header__avatar {
+    width: 112px;
+    height: 112px;
+  }
+  .profile-header__identity {
+    margin-top: -56px;
+  }
+}
+
+@media (pointer: coarse) {
+  .profile-header__cover-zoom-hint {
+    opacity: 0.85;
+  }
+}

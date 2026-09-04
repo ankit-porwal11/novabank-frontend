@@ -1,0 +1,112 @@
+.bank-ai-emblem {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+.bank-ai-emblem canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: pan-y;
+}
+
+.bank-ai-emblem__fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  perspective: 640px;
+}
+
+.bank-ai-emblem__mark {
+  position: relative;
+  width: 72%;
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg) rotateY(-16deg);
+  transition: transform 320ms var(--ease-out), filter 320ms var(--ease-out);
+  filter: drop-shadow(0 10px 18px rgba(8, 16, 40, 0.45));
+}
+
+.bank-ai-emblem:hover .bank-ai-emblem__mark,
+.bank-ai-emblem:focus-visible .bank-ai-emblem__mark {
+  transform: rotateX(4deg) rotateY(10deg) translateY(-4px);
+  filter: drop-shadow(0 16px 22px rgba(37, 99, 235, 0.22));
+}
+
+.bank-ai-emblem__building {
+  position: absolute;
+  inset: 18% 22% 16%;
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 28%),
+    linear-gradient(155deg, #1d2b52 0%, #12213a 100%);
+  border: 1px solid rgba(248, 250, 252, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.bank-ai-emblem__columns {
+  position: absolute;
+  inset: 28% 18% 22%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8%;
+}
+
+.bank-ai-emblem__columns span {
+  display: block;
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(147, 197, 253, 0.35), rgba(147, 197, 253, 0.08));
+}
+
+.bank-ai-emblem__roof {
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  top: 8%;
+  height: 18%;
+  clip-path: polygon(8% 100%, 50% 0%, 92% 100%);
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+}
+
+.bank-ai-emblem__core {
+  position: absolute;
+  left: 50%;
+  top: 6%;
+  width: 22%;
+  aspect-ratio: 1;
+  transform: translateX(-50%) rotate(45deg);
+  border-radius: 4px;
+  background: linear-gradient(135deg, #7dd3fc, #22d3ee);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.35);
+}
+
+.bank-ai-emblem__ring {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 46%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1.5px solid rgba(6, 182, 212, 0.45);
+  animation: bank-ai-ring 8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bank-ai-emblem__ring,
+  .bank-ai-emblem__mark {
+    animation: none;
+    transition: none;
+  }
+}
+
+@keyframes bank-ai-ring {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}

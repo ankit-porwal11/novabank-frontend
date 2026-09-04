@@ -1,0 +1,123 @@
+.return-eligibility-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-color: var(--glass-border);
+  box-shadow: var(--shadow-raised);
+}
+
+.return-eligibility-card::before {
+  content: "";
+  position: absolute;
+  top: -55%;
+  left: -20%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.return-eligibility-card__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 18px -6px rgba(6, 182, 212, 0.5);
+}
+
+.return-eligibility-card__title {
+  position: relative;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.return-eligibility-card__body {
+  position: relative;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  max-width: 46ch;
+}
+
+.return-eligibility-card__amount {
+  position: relative;
+  margin-top: var(--space-5);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.return-eligibility-card__to {
+  position: relative;
+  margin-top: var(--space-1);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.return-eligibility-card__remaining {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-success-soft);
+  color: #6ee7b7;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.return-eligibility-card__countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.return-eligibility-card__count {
+  position: relative;
+  margin-top: var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.return-eligibility-card__cta {
+  position: relative;
+  display: block;
+  margin-top: var(--space-5);
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .return-eligibility-card__amount {
+    font-size: var(--fs-xl);
+  }
+
+  .return-eligibility-card__remaining {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .return-eligibility-card__countdown {
+    margin-left: 0;
+  }
+}

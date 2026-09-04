@@ -1,0 +1,87 @@
+.form-preview-page {
+  /* This is a flex item of .dashboard-outlet (flex-direction: column).
+     margin: 0 auto sets auto left/right margins, and per the flexbox
+     spec, auto margins on the cross axis absorb free space and override
+     align-items: stretch — so without an explicit width this page was
+     shrinking to its content's width and centering itself, instead of
+     filling the viewport. That in turn made the frame-host's measured
+     width (used for the preview's scale calculation) wrong at every
+     breakpoint, which is why the preview scaling fix had no visible
+     effect. Verified by rendering: width was ~221px on a 936px-wide
+     desktop content column before this fix. */
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.form-preview-page__frame-host {
+  position: relative;
+  margin-top: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  /* Vertical stays clipped to the measured height; horizontal is allowed
+     to scroll so the preview never has to shrink past MIN_READABLE_SCALE
+     on narrow viewports. On desktop the scaled content already fits the
+     host width, so this scrollbar never appears there. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  min-height: 120px;
+}
+
+.form-preview-page__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border: 0;
+  max-width: none;
+  transform-origin: top left;
+  background: #ffffff;
+}
+
+.form-preview-page__fallback {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-preview-page__row {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+}
+
+@media (max-width: 640px) {
+  .form-preview-page__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}
+
+.form-preview-page__row dt {
+  color: var(--color-text-muted);
+}
+
+.form-preview-page__row dd {
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.form-preview-page__footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

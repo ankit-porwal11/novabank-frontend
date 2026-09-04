@@ -1,0 +1,5 @@
+/* OrderActionBanner's styles (.order-banner, .order-banner--*, __text,
+   __subtext) live in ../../styles/order.css, which every order page
+   already imports. This file exists only so OrderActionBanner.jsx's
+   `import "./OrderActionBanner.css"` resolves — it intentionally defines
+   nothing new, to avoid duplicate/conflicting rules. */

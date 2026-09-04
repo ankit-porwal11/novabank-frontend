@@ -1,0 +1,197 @@
+.sidebar {
+  width: 100%;
+  max-width: var(--sidebar-width);
+  flex-shrink: 0;
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-elevated);
+  background-image: var(--glass-highlight);
+  border-right: 1px solid var(--color-border);
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.18);
+  padding: var(--space-6) var(--space-4) var(--space-4);
+  overflow: hidden;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-2);
+  margin-bottom: var(--space-8);
+  flex-shrink: 0;
+}
+
+.sidebar__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #fff;
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  flex-shrink: 0;
+}
+
+.sidebar__brand-name {
+  font-size: var(--fs-md);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 11px var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.sidebar__active-indicator {
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-md);
+  z-index: 0;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.16) inset;
+}
+
+.sidebar__link-icon,
+.sidebar__link > span:last-child {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.sidebar__link:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.sidebar__link:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.sidebar__link--active {
+  color: #93c5fd;
+}
+
+.sidebar__bottom {
+  flex-shrink: 0;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+}
+
+.sidebar__footer {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.sidebar__footer-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2);
+  color: var(--color-text-faint);
+  font-size: var(--fs-xs);
+}
+
+/* ==========================================================================
+   Responsive tiers
+   Desktop  : >= 1200px — full sidebar, no compaction.
+   Tablet   : 768px–1199px — full sidebar remains visible and functional.
+   Mobile   : < 768px — the ONLY tier where the static sidebar hides. It is
+              replaced by <MobileSidebarDrawer>.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .sidebar:not(.sidebar--drawer) {
+    display: none;
+  }
+}
+
+/* ---- Mobile drawer variant ---- */
+.sidebar-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 16, 0.65);
+  backdrop-filter: blur(2px);
+  z-index: var(--z-drawer);
+}
+
+.sidebar--drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--z-drawer) + 1);
+  height: 100%;
+  height: 100dvh;
+  width: min(280px, 84vw);
+  max-width: min(280px, 84vw);
+  box-shadow: var(--shadow-lg);
+}
+
+.sidebar-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  flex-shrink: 0;
+}
+
+.sidebar-drawer__header .sidebar__brand {
+  margin-bottom: 0;
+}
+
+.sidebar-drawer__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+}
+
+.sidebar-drawer__close:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .sidebar--drawer,
+  .sidebar-drawer__backdrop {
+    display: none;
+  }
+}

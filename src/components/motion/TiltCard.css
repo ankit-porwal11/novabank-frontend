@@ -1,0 +1,36 @@
+.tilt-card {
+  position: relative;
+  will-change: transform;
+  transform-style: preserve-3d;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.dashboard-tilt-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.tilt-card__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* No hover-tilt on touch devices — avoid a "stuck tilt" feel on tap. */
+@media (pointer: coarse) {
+  .tilt-card {
+    transform: none !important;
+  }
+  .tilt-card__glare {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card {
+    transform: none !important;
+  }
+}

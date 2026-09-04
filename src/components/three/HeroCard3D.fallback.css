@@ -1,0 +1,77 @@
+.hero-card-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.hero-card-fallback__card {
+  position: relative;
+  width: min(420px, 82vw);
+  aspect-ratio: 1.6 / 1;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #182347 0%, #1d2b52 55%, #12213a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg);
+  padding: 28px 32px;
+  transform: rotateY(-14deg) rotateX(6deg);
+  overflow: hidden;
+}
+
+.hero-card-fallback__sweep {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.35), transparent 70%);
+}
+
+.hero-card-fallback__chip {
+  width: 44px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(248, 250, 252, 0.85);
+  margin-bottom: 28px;
+}
+
+.hero-card-fallback__number {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  color: rgba(248, 250, 252, 0.6);
+  margin-bottom: 22px;
+}
+
+.hero-card-fallback__brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: rgba(248, 250, 252, 0.95);
+}
+
+.hero-card-fallback__tier {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: rgba(248, 250, 252, 0.5);
+}
+
+@media (max-width: 430px) {
+  .hero-card-fallback__card {
+    padding: 18px 16px;
+    width: min(420px, 92%);
+  }
+  .hero-card-fallback__number {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+  .hero-card-fallback__tier {
+    right: 16px;
+    bottom: 16px;
+  }
+}

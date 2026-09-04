@@ -1,0 +1,125 @@
+/* ==========================================================================
+   NovaBank Landing Design System
+   Everything here is scoped under `.landing` so it never leaks into the
+   dashboard or auth screens, which continue to use theme.css as-is.
+   Reuses the same core color tokens from theme.css for brand consistency;
+   adds landing-only typography, motion, and section-spacing tokens.
+   ========================================================================== */
+
+.landing {
+  --font-display: "Fraunces", "Georgia", serif;
+
+  --landing-section-y: 128px;
+  --landing-section-y-sm: 72px;
+  --landing-max-width: 1240px;
+
+  --landing-glow-primary: radial-gradient(
+    600px 400px at 50% 0%,
+    rgba(37, 99, 235, 0.16),
+    transparent 65%
+  );
+  --landing-glow-accent: radial-gradient(
+    500px 360px at 100% 40%,
+    rgba(6, 182, 212, 0.12),
+    transparent 60%
+  );
+
+  background: var(--color-bg);
+  color: var(--color-text);
+  position: relative;
+  overflow-x: clip;
+}
+
+.landing__section {
+  padding: var(--landing-section-y) var(--space-8);
+  position: relative;
+}
+
+.landing__container {
+  max-width: var(--landing-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.landing__heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--color-text);
+}
+
+.landing__heading--xl {
+  font-size: clamp(2.75rem, 5.2vw, 4.5rem);
+}
+
+.landing__heading--lg {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+}
+
+.landing__subhead {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+.landing__section-head {
+  max-width: 640px;
+  margin-bottom: var(--space-12);
+}
+
+.landing__section-head--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Subtle grain texture overlay, used once at the page root — never on
+   individual cards, to avoid a busy/gaming-UI feel. */
+.landing__grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Glass card used across landing sections — same language as the dashboard's
+   .glass-panel utility, kept consistent rather than reinvented. */
+.landing__glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+}
+
+@media (max-width: 900px) {
+  .landing__section {
+    padding: var(--landing-section-y-sm) var(--space-5);
+  }
+  .landing__section-head {
+    margin-bottom: var(--space-8);
+  }
+}
+
+@media (max-width: 430px) {
+  .landing__section {
+    padding: var(--landing-section-y-sm) var(--space-4);
+  }
+}

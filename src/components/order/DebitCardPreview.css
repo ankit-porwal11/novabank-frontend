@@ -1,0 +1,158 @@
+.debit-preview-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-8) 0;
+}
+
+.debit-preview {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1.586 / 1;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.debit-preview__ambient {
+  position: absolute;
+  inset: -14% -8% -8%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(79, 127, 224, 0.14) 45%, transparent 72%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.debit-preview__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7% 8% 6%;
+  background: linear-gradient(155deg, var(--account-navy) 0%, var(--account-navy-deep) 55%, #060a1c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 30px 60px -20px rgba(8, 12, 32, 0.55),
+    0 10px 24px -10px rgba(8, 12, 32, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.debit-preview__face--back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+}
+
+.debit-preview__wave {
+  position: absolute;
+  inset: -30% -10% -10% -10%;
+  background: radial-gradient(closest-side, rgba(79, 127, 224, 0.32), transparent 70%);
+  transform: rotate(-16deg);
+  border-radius: 50%;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.debit-preview__top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.debit-preview__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--account-blue-mid) 100%);
+  color: #ffffff;
+}
+
+.debit-preview__contactless {
+  color: rgba(226, 232, 240, 0.7);
+  transform: rotate(90deg);
+}
+
+.debit-preview__chip {
+  position: relative;
+  z-index: 2;
+  width: 46px;
+  height: 34px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #f4e6c4 0%, var(--account-gold) 45%, #f4e6c4 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 7px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.debit-preview__chip span {
+  display: block;
+  height: 1px;
+  background: rgba(90, 62, 20, 0.4);
+  border-radius: 1px;
+}
+
+.debit-preview__bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.debit-preview__brand-name {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+}
+
+.debit-preview__tag {
+  margin-top: 2px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: rgba(226, 232, 240, 0.7);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.debit-preview__stripe {
+  position: absolute;
+  top: 16%;
+  left: 0;
+  right: 0;
+  height: 15%;
+  background: #0a0e1c;
+}
+
+.debit-preview__back-text {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: rgba(226, 232, 240, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.debit-preview__hint {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .debit-preview {
+    transform: none !important;
+  }
+}

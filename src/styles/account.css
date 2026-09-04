@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Account Module — dark premium banking theme
+   Uses theme.css's existing dark tokens directly (no override, no light
+   shell) — this file only adds Account-module-specific layout utilities
+   and a few extra navy/gold accent tokens the premium banking card needs.
+   ========================================================================== */
+
+:root {
+  --account-navy-deep: #0b1330;
+  --account-navy: #101c44;
+  --account-blue-mid: #2c4bb0;
+  --account-blue-bright: #5b8def;
+  --account-gold: #e7cd94;
+}
+
+.account-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+  width: 100%;
+}
+
+.account-page__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+}
+
+.account-page__head > :first-child {
+  min-width: 0;
+  flex: 1 1 12rem;
+}
+
+.account-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--account-blue-bright);
+  margin-bottom: var(--space-2);
+}
+
+.account-page__title {
+  font-size: clamp(1.25rem, 4vw, var(--fs-2xl));
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.account-page__subtitle {
+  margin-top: var(--space-1);
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+}
+
+/* Tab nav — horizontally scrollable when labels cannot fit (mobile). */
+.account-tabs-scroller {
+  flex: 1 1 auto;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  padding-bottom: 2px;
+}
+
+.account-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-1);
+  padding: 5px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  width: max-content;
+  max-width: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.account-tabs__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 9px var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--duration-base) var(--ease-out);
+  position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.account-tabs__link:hover {
+  color: var(--color-text);
+}
+
+.account-tabs__link--active {
+  color: #ffffff;
+}
+
+.account-tabs__pill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--account-blue-mid) 100%);
+  border-radius: var(--radius-full);
+  z-index: -1;
+  box-shadow: 0 6px 16px -4px rgba(37, 99, 235, 0.5);
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+@media (max-width: 1100px) {
+  .account-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .account-page__head {
+    flex-direction: column;
+    align-items: stretch;
+    /* Without this, the header keeps flex-wrap: wrap from the row layout
+       above. In a column flex container, wrap doesn't stack overflow
+       vertically — it opens a NEW COLUMN to the right instead, which
+       pushed the tabs completely off-screen at narrow widths (verified
+       by rendering: tabs-scroller's rect landed with left == viewport
+       width). Forcing nowrap here keeps the header a single stacked
+       column, so the tabs render below the title, in-viewport. */
+    flex-wrap: nowrap;
+  }
+
+  .account-tabs-scroller {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .account-layout {
+    /* 1fr alone still carries an automatic minimum size based on the
+       track's content (the bank card's non-wrapping card-number text),
+       so the grid refused to shrink below that at very narrow widths —
+       verified by rendering: the card overflowed its grid cell by the
+       exact amount its text needed. minmax(0, 1fr) removes that floor,
+       matching the pattern already used for the 2-column layout above. */
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.account-section-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-3);
+}
+
+/* Hero card cell — centers the BankCard and adds the small carousel-style
+   dot indicator beneath it, matching the reference layout's presentation
+   (purely decorative, no data attached). */
+.account-hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6) 0;
+}
+
+.account-hero-card__dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.account-hero-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+}
+
+.account-hero-card__dot--active {
+  width: 18px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-primary), var(--account-blue-bright));
+}
+
+/* Right column of the hero row — balance card stacked above health panel. */
+.account-summary-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}

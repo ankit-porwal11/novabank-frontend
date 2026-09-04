@@ -1,0 +1,176 @@
+.ai-assistant-entry-card {
+  cursor: pointer;
+}
+
+.ai-assistant-entry-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  color: var(--color-text);
+}
+
+.ai-assistant-entry-card__description {
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}
+
+.ai-assistant-entry-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.sidebar-ai {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 12px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: var(--color-surface);
+  background-image:
+    var(--glass-highlight),
+    linear-gradient(135deg, rgba(37, 99, 235, 0.14) 0%, rgba(6, 182, 212, 0.08) 100%);
+  box-shadow: var(--shadow-card);
+  color: var(--color-text);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  perspective: 640px;
+  min-width: 0;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.sidebar-ai::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 46%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.06) 54%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-out);
+  z-index: 0;
+}
+
+.sidebar-ai:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-card-hover), 0 10px 24px rgba(37, 99, 235, 0.12);
+}
+
+.sidebar-ai:hover::after {
+  transform: translateX(120%);
+}
+
+.sidebar-ai:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.sidebar-ai--active {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+.sidebar-ai__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #fff;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset, var(--shadow-sm);
+  transform: translateZ(12px);
+  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+
+.sidebar-ai__icon::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  top: -3px;
+  right: -3px;
+  background: #67e8f9;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.55);
+  animation: sidebar-ai-spark 2.8s ease-in-out infinite;
+}
+
+.sidebar-ai:hover .sidebar-ai__icon,
+.sidebar-ai:focus-visible .sidebar-ai__icon {
+  transform: translateZ(22px) translateY(-2px) rotateY(16deg) rotateX(-8deg);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.28);
+}
+
+.sidebar-ai__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-ai__title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-ai__hint {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.sidebar-ai__arrow {
+  flex-shrink: 0;
+  color: var(--color-text-faint);
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-ai:hover .sidebar-ai__arrow,
+.sidebar-ai--active .sidebar-ai__arrow {
+  color: #93c5fd;
+}
+
+@keyframes sidebar-ai-spark {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
+  50% { transform: translateY(-3px) scale(1.15); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-ai::after,
+  .sidebar-ai__icon,
+  .sidebar-ai__icon::after {
+    animation: none;
+    transition: none;
+  }
+}

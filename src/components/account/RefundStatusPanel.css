@@ -1,0 +1,26 @@
+.refund-panel__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) 0;
+}
+
+.refund-panel__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-text-faint);
+}
+
+.refund-panel__empty p {
+  font-size: var(--fs-sm);
+}
+
+.refund-panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

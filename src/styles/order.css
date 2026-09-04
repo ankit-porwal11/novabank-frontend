@@ -1,0 +1,164 @@
+/* ==========================================================================
+   Order module — status color tokens (exact spec section "Status Colors")
+   and shared banner/timeline styles. Layered on top of theme.css/account.css
+   tokens, same dark premium system — no new palette introduced.
+   ========================================================================== */
+
+:root {
+  --order-status-blue: #3b82f6;
+  --order-status-purple: #a78bfa;
+  --order-status-orange: #fb923c;
+  --order-status-yellow: #facc15;
+  --order-status-amber: #f59e0b;
+  --order-status-green: #34d399;
+  --order-status-red: #f87171;
+  --order-status-darkred: #b91c1c;
+}
+
+.order-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+}
+
+.order-banner--warning {
+  background: var(--color-warning-soft);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fcd34d;
+}
+
+.order-banner--danger {
+  background: var(--color-danger-soft);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.order-banner--darkred {
+  background: rgba(153, 27, 27, 0.18);
+  border: 1px solid rgba(153, 27, 27, 0.4);
+  color: #fca5a5;
+  align-items: flex-start;
+}
+
+.order-banner__text {
+  flex: 1;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.order-banner__subtext {
+  margin-top: 2px;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.order-action-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .order-action-note {
+    white-space: normal;
+  }
+  .order-banner {
+    align-items: flex-start;
+  }
+  .order-track__meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+.order-action-note--success {
+  color: #6ee7b7;
+}
+
+.order-active-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.order-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+  color: var(--color-text-faint);
+}
+
+.order-empty__title {
+  margin-top: var(--space-4);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.order-empty__subtitle {
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-text-faint);
+  max-width: 380px;
+}
+
+.order-history-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+@media (max-width: 900px) {
+  .order-history-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.order-track__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.order-track__item-type {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.order-track__icon {
+  color: var(--color-text-faint);
+}
+
+.order-track__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.order-track__meta-label {
+  font-size: var(--fs-xs);
+  color: var(--color-text-faint);
+  margin-bottom: 2px;
+}
+
+.order-track__meta-value {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
