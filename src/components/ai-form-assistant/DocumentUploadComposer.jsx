@@ -9,6 +9,7 @@ const DOCUMENT_TYPE_MAP = {
   "PAN Card": "PAN",
   "Passbook": "PASSBOOK",
   "Other": "OTHER",
+   "Nominee ID Proof": "OTHER",
 };
 
 /**
